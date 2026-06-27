@@ -1,5 +1,6 @@
 import { Box, Typography,Chip } from "@mui/material";
 import{ DrawnCard } from "@/types/type";
+import {useState } from "react";
 
 interface TarotCardProps {
     drawn:DrawnCard;
@@ -32,24 +33,60 @@ const TarotCardComponent = ({ drawn }:TarotCardProps ) => {
     const imageName = getImageName(card.name_short);
     const imageUrl =`https://raw.githubusercontent.com/metabismuth/tarot-json/master/cards/${imageName}.jpg`;
 
-
+    const [ flipped, setFlipped] = useState(false);
+    
     return (
-        <Box 
         
+        <Box 
+        onClick={() => setFlipped(true)}
+
         sx={{
-            height:"100%",
-            background:"linear-gradient(160deg, #1e1535, #2a1f45)",
-            border:"0.5px solid rgba(201,184,255,0.15)",
-            borderRadius:"16px",
-            overflow:"hidden",
-            transition:"transform 0.2s, box-shadow 0.2s",
-            "&:hover":{
-                transform:"translateY(-4px)",
-                boxShadow:"0 12px 32px rgba(123,94,167,0.3)",
-            }
+            perspective:"1000px",
+            cursor: flipped ? "default" : "pointer" ,
+            height:"100%",                   
         }}      
         >
             <Box
+            sx={{
+                position:"relative",
+                width:"100%",
+                minHeight:{ xs:360, md:440 },
+                transformStyle:"preserve-3d",
+                transition:"transform 0.6s",
+                transform:flipped ? "rotateY(180deg)" : "rotateY(0)",
+            }}>
+                <Box
+                    sx={{
+                        position: "absolute",
+                        width:"100%",
+                        height:"100%",
+                        backfaceVisibility:"hidden",
+                        borderRadius:"16px",
+                        border: "0.5px solid rgba(201,184,255,0.15)",
+                        background: "linear-gradient(160deg, #251b40, #1a1230)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: "3rem",
+                    }}
+                >
+                    🔮
+                </Box>
+
+                <Box
+                sx={{
+                    position:"absolute",
+                    width:"100%",
+                    height:"100%",
+                    backfaceVisibility:"hidden",
+                    transform:"rotateY(180deg)",
+                    borderRadius:"16px",
+                    overflow:"hidden",
+                    border:"0.5px solid rgba(201,184,255,0.15)",
+                    background:"linear-gradient(160deg, #1e1535, #2a1f45)",                 
+                }}
+            >
+                <Box
                 sx={{
                     height:{ xs:220, md:280 },
                     display:'flex',
@@ -71,9 +108,8 @@ const TarotCardComponent = ({ drawn }:TarotCardProps ) => {
                     transform:reversed ? "rotate(180deg)" :"none",
                     boxShadow:"0 4px 16px rgba(0,0,0,0.4)",
                 }}
-                />                  
+                />       
             </Box>
-
 
             <Box sx={{ p:2 }}>
                     <Box
@@ -99,8 +135,8 @@ const TarotCardComponent = ({ drawn }:TarotCardProps ) => {
                             label="Reversed"
                             size="small"
                             sx={{
-                                fontSize:"18px",
-                                height:16,
+                                fontSize:"14px",
+                                height:22,
                                 background:"rgba(196,92,138,0.15)",
                                 color:"secondary.light",
                                 border: "0.5px solid rgba(196,92,138,0.3)"
@@ -132,7 +168,11 @@ const TarotCardComponent = ({ drawn }:TarotCardProps ) => {
                         {reversed ? card.meaning_rev :card.meaning_up}
                     </Typography>
                 </Box>                  
-            </Box>             
+            </Box>
+        </Box>
+    </Box>
+            
+                       
     );
 }
 

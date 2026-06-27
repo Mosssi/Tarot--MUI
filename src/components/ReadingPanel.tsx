@@ -107,6 +107,20 @@ const ReadingPanel = ({
                     <CircularProgress sx={{ color:"primary.light"}} />
                 </Box>
             ) :drawnCards.length > 0? (
+                <Box sx={{ width:"100% "}}>
+                    <Typography 
+                    variant="body2"
+                    sx={{
+                        textAlign:"center",
+                        color:"var(--color-text-dim)",
+                        fontStyle:"italic",
+                        letterSpacing:"0.08em",
+                        mb:3,
+                    }}
+                    >
+                        Tap each slot in turn
+                    </Typography>
+
                 <Grid container spacing={2} sx={{ justifyContent:"center", mb:4}} >
                     {drawnCards.map((drawn,i) => (
                         <Grid
@@ -117,6 +131,7 @@ const ReadingPanel = ({
                         </Grid>
                     ))}
                 </Grid>
+            </Box>
             ) : (
                 <Box
                 sx={{ 
