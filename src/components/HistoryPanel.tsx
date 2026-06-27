@@ -39,7 +39,6 @@ const HistoryPanel = ({ history, onDelete }: HistoryPanelProps ) => {
                 borderRadius:4,
             }}
             >
-                <Typography fontSize="3rem" mb={1}></Typography>
                 <Typography variant="body2" color="text.secondary">
                     No reading yet. Draw your first cards!
                 </Typography>
@@ -74,14 +73,16 @@ const HistoryPanel = ({ history, onDelete }: HistoryPanelProps ) => {
                             }}
                             >
                                 <Box sx={{ display:"flex", alignItems:"center", gap:1.5 }}>
-                                    <Typography fontSize="1.5rem">
+                                    <Typography sx={{ fontSize: "1.5rem"}} >
                                         {TYPE_EMOJI[record.type]}
                                     </Typography>
                                     <Box>
                                         <Typography
-                                        variant="body2"
-                                        fontWeight={500}
-                                        sx={{ fontSize:"13px" }}
+                                        variant="body2"                                                                                  
+                                        sx={{                                              
+                                            fontSize:"13px",
+                                            fontWeight:500,
+                                        }}
                                         >
                                             {record.type} Reading
                                         </Typography>

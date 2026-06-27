@@ -12,7 +12,7 @@ export type TarotCard = {
 
 export type DrawnCard = {
     card: TarotCard;
-    position:"past" | "Present" | "Future" | "Answer";
+    position:"Past" | "Present" | "Future" | "Answer";
     reversed:boolean;
 }
 
@@ -20,5 +20,5 @@ export type ReadingRecord = {
     id:string;
     type:ReadingType;
     cards:DrawnCard[];
-    createAt:string;
+    createdAt:string;
 }

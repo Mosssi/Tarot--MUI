@@ -107,7 +107,7 @@ const ReadingPanel = ({
                     <CircularProgress sx={{ color:"primary.light"}} />
                 </Box>
             ) :drawnCards.length > 0? (
-                <Grid container spacing={2} justifyContent="center" sx={{ mb:4}}>
+                <Grid container spacing={2} sx={{ justifyContent:"center", mb:4}} >
                     {drawnCards.map((drawn,i) => (
                         <Grid
                         key={i}
@@ -127,7 +127,7 @@ const ReadingPanel = ({
                     borderRadius:2,
                 }}
                 >
-                    <Typography fontSize="3rem" mb={1}>🃏</Typography>
+                    <Typography sx={{ fontSize:"3rem", mb:1 }} > 🃏 </Typography>
                     <Typography variant="body2" color="text.secondary">
                         Draw your cards to begin the reading
                     </Typography>
